@@ -3,10 +3,10 @@ Components for dealing with XML.
 
 Some important key points
 
--- Deals with in-memory buffer
--- No file system or other streaming apis
--- Does no allocations by default
--- Structured for composition
+* Deals with in-memory buffer
+*  No file system or other streaming apis
+* Does no allocations by default
+* Structured for composition
 
 
 The lowest level thing you can do is use the tokenizer.  Like this:
@@ -25,8 +25,8 @@ static void printToken(const XmlToken& tok)
 }
 
 
-const char * xmlText = "<svg><rect width='100' height='150' /></svg>";
-ByteSpan xmlTextSpan(xmlText);
+
+ByteSpan xmlTextSpan("<svg><rect width='100' height='150' /></svg>");
 XmlTokenState fState{xmlTextSpan, false};
 
 XmlToken tok{};
@@ -57,7 +57,7 @@ Token [3] / : []
 Token [7] NAME : [svg]
 Token [2] > : []
 
-That lone is enough to do something transcoding, like from XML to JSON.
+That alone is enough to do some transcoding, like from XML to JSON.
 
 The next level of composition is the XmlPull, which is setup similarly:
 
@@ -65,7 +65,7 @@ The next level of composition is the XmlPull, which is setup similarly:
 //======================================
 #include "xmlscan.h"
 
-XmlPull puller();
+XmlPull puller("<svg><rect width='100' height='150' /></svg>");
 XmlElement elem{};
 
 while (puller.next(elem))
