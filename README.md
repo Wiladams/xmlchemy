@@ -39,6 +39,7 @@ while (nextXmlToken(fState, tok))
 
 Will generate the stream of tokens
 
+```
 Token [1] < : []
 Token [7] NAME : [svg]
 Token [2] > : []
@@ -56,6 +57,7 @@ Token [1] < : []
 Token [3] / : []
 Token [7] NAME : [svg]
 Token [2] > : []
+```
 
 That alone is enough to do some transcoding, like from XML to JSON.
 
