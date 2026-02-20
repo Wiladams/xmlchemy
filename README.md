@@ -11,6 +11,7 @@ Some important key points
 
 The lowest level thing you can do is use the tokenizer.  Like this:
 
+```C++
 //=========================================
 #include "xmltoken.h"
 
@@ -34,6 +35,7 @@ while (nextXmlToken(fState, tok))
     printToken(tok);
 }
 //=========================================
+```
 
 Will generate the stream of tokens
 
@@ -59,6 +61,7 @@ That lone is enough to do something transcoding, like from XML to JSON.
 
 The next level of composition is the XmlPull, which is setup similarly:
 
+```C++
 //======================================
 #include "xmlscan.h"
 
@@ -71,6 +74,7 @@ while (puller.next(elem))
 }
 
 //======================================
+```
 
 The xml scanner will return element beginnings, endings, content, and attributes as a solid span (not parsed).  The initial scan does not do entity expansions, or whitespace collapse.  These steps can be applied if and when the consumer chooses to use them.  
 
