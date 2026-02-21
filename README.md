@@ -67,7 +67,7 @@ The next level of composition is the XmlPull, which is setup similarly:
 //======================================
 #include "xmlscan.h"
 
-XmlPull puller("<svg><rect width='100' height='150' /></svg>");
+XmlPull puller("<svg><!-- comment --> <rect width='100' height='150' /></svg>");
 XmlElement elem{};
 
 while (puller.next(elem))
@@ -76,6 +76,18 @@ while (puller.next(elem))
 }
 
 //======================================
+```
+Will generate this stream of XmlElement structures
+
+```
+[[START_TAG: 'svg'
+[[COMMENT:
+ comment
+[[SELF_CLOSING: 'rect'
+ATTRIBUTES:
+  width   = 100
+  height   = 150
+[[END_TAG: 'svg'
 ```
 
 The xml scanner will return element beginnings, endings, content, and attributes as a solid span (not parsed).  The initial scan does not do entity expansions, or whitespace collapse.  These steps can be applied if and when the consumer chooses to use them.  
